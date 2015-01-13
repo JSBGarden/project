@@ -1,4 +1,4 @@
-package com.project.remoteprotocol;
+package com.project.remoteprotocol.global;
 
 
 import java.awt.event.KeyEvent;
