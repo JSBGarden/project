@@ -1,12 +1,9 @@
 package com.project.remoteclient;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.net.UnknownHostException;
 
-import com.project.remoteprotocol.Buttons;
-import com.project.remoteprotocol.Events;
+import com.project.remoteprotocol.client.ClientSockets;
+import com.project.remoteprotocol.global.Buttons;
+import com.project.remoteprotocol.global.Events;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -18,10 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
-	
-	private Socket socket;
-	private	PrintWriter out ;	
+public class MainActivity extends Activity {		
 	
 	private EditText ip;
 	private Button previous,next,home,end,connect,disconnect;
@@ -35,9 +29,6 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		ip= (EditText) findViewById(R.id.txtIP);
-		
-		//message= (EditText) findViewById(R.id.txtMessage);
-		//send = (Button) findViewById(R.id.btnSend);
 		previous= (Button) findViewById(R.id.btnPrevious);
 		next= (Button) findViewById(R.id.btnNext);
 		home= (Button) findViewById(R.id.btnHome);
@@ -72,78 +63,28 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	
-	//function to send data to the server
-	public void send( final String a){
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				try{
-					out.println(a);
-					out.flush();
-				} catch (Exception e){					
-					e.printStackTrace();
-				}
-			}
-		}).start();
-	}
-	
-	
-	//function to connect to the server 
-	public void connect(){
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try{
-					socket=new Socket(ip.getText().toString(),sendPort);
-					out = new PrintWriter(socket.getOutputStream(), true);					
-				} catch (Exception e){					
-					e.printStackTrace();
-				}
-			}
-		}).start();
-	}
-	
-	//function to disconnect to the server 
-	public void disconnect(){
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try{
-					out.close();
-					socket.close();
-				} catch (Exception e){					
-					e.printStackTrace();
-				}
-			}
-		}).start();
-	}
-
-	
-	
 	 OnClickListener oclBtns = new OnClickListener() {
 	       @Override
 	       public void onClick(View v) {	         
 	    	   switch( v.getId())
 	   		{
-	   		case R.id.btnEnd:
-	   			send(Events.PowerPoint +","+Buttons.KEY_END);
+	   		case R.id.btnEnd:	   			
+	   			ClientSockets.send(Events.POWER_POINT +","+Buttons.KEY_END);
 	   			break;
 	   		case R.id.btnHome:	   			
-	   			send(Events.PowerPoint +","+Buttons.KEY_HOME);
+	   			ClientSockets.send(Events.POWER_POINT +","+Buttons.KEY_HOME);
 	   			break;
 	   		case R.id.btnPrevious:	   			
-	   			send(Events.PowerPoint +","+Buttons.KEY_PREVIOUS);
+	   			ClientSockets.send(Events.POWER_POINT +","+Buttons.KEY_PREVIOUS);
 	   			break;
 	   		case R.id.btnNext:
-	   			send(Events.PowerPoint +","+Buttons.KEY_NEXT);
+	   			ClientSockets.send(Events.POWER_POINT +","+Buttons.KEY_NEXT);
 	   			break;
 	   		case R.id.btnConnect:
-	   			connect();
+	   			ClientSockets.connect(ip.getText().toString(),sendPort);
 	   			break;
 	   		case R.id.btnDisconnect:
-	   			disconnect();
+	   			ClientSockets.disconnect();
 	   			break;
 	   		}
 	       }

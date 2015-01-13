@@ -4,13 +4,13 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class ClientSockets {
-	private Socket socket;
-	private	PrintWriter out ;	
+	private static Socket socket;
+	private	static PrintWriter out ;	
 	
 	
 	
 	//function to send data to the server
-		public void send(  final String data){
+		public static void send(  final String data){
 			new Thread(new Runnable() {
 				
 				@Override
@@ -27,7 +27,7 @@ public class ClientSockets {
 		
 		
 		//function to connect to the server 
-		public void connect(final String ip,final int port){
+		public static void connect(final String ip,final int port){
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
@@ -42,7 +42,7 @@ public class ClientSockets {
 		}
 		
 		//function to disconnect to the server 
-		public void disconnect(){
+		public static void disconnect(){
 			new Thread(new Runnable() {
 				@Override
 				public void run() {

@@ -1,6 +1,7 @@
 package com.project.remoteserver;
 
 import java.awt.AWTError;
+import java.awt.Event;
 import java.awt.Robot;
 import java.awt.event.AWTEventListener;
 import java.io.BufferedReader;
@@ -8,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import com.project.remoteprotocol.global.Events;
 
 
 
@@ -62,7 +65,7 @@ public class ServerConsole    {
 						break;
 					}
 					String data[]=input.split(",");
-					if (data[0].equals("1"))//&& data.length==2)
+					if (data[0].equals(Events.POWER_POINT+""))//&& data.length==2)
 					{      							
 						keybordEvents.keyPress(Integer.parseInt(data[1]));
 					};				
