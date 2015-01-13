@@ -3,63 +3,143 @@ package com.project.remoteserver;
 import java.awt.AWTError;
 import java.awt.Robot;
 import java.awt.event.AWTEventListener;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
+
+
+
 
 public class ServerConsole    {
 
-
+	static Robot robot=null;
+	static KeybordEvents keybordEvents=null;
 	public static void main(String[] args) throws IOException {
-		Robot robot=null;
-		KeybordEvents keybordEvents=null;    
+		    
+		try{
+			robot= new Robot();
+			keybordEvents=new KeybordEvents(robot);
 
-		Socket clientSocket = null;
+
+		ServerSocket listener= new ServerSocket(8081);
+		//listener.setSoTimeout(10000);
+		System.out.println("WATING FOR CLIENT ");
+
+		try{
+			while(true){
+				new ClientDealer(listener.accept()).start();				
+			}
+
+		}
+		finally{
+			listener.close();
+		}
+	}		
+		catch(Exception e){}
+		
+	}
+
+	private static class ClientDealer extends Thread {
+		private Socket socket;
+
+		public ClientDealer(Socket socket){
+			this.socket=socket;			 
+		}			
+
+
+		public void run() {
+			try{
+				System.out.println("client found");
+				BufferedReader in =new BufferedReader(
+						new InputStreamReader(socket.getInputStream()));
+				System.out.println("start");
+				while (true){
+					String input=in.readLine();
+					System.out.println(input);
+					if (input == null ) {
+						break;
+					}
+					String data[]=input.split(",");
+					if (data[0].equals("1"))//&& data.length==2)
+					{      							
+						keybordEvents.keyPress(Integer.parseInt(data[1]));
+					};				
+					
+					
+
+				}
+			} catch(Exception e){
+
+			} finally{
+				try {
+					socket.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			}
+
+		}
+
+
+	}
+}
+
+
+
+
+
+
+
+
+	/*		Socket clientSocket = null;
 		ServerSocket serverSocket = null;
+		int count =0 ;
 		try{
 			robot= new Robot();
 			keybordEvents=new KeybordEvents(robot);
 
 			serverSocket = new ServerSocket(8081);
-			System.out.println("server started....");
-			while (true){ 
+		      serverSocket.setSoTimeout(10000);
 				System.out.println("WATING FOR CLIENT ");
 				clientSocket = serverSocket.accept();
 				System.out.println("CLIENT FOUND");
+			System.out.println("server started....");
+			while (true){
+				System.out.println("count :" + count++);
+				System.out.println("_________________");
 
 				//	BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputS­tream()));
 				Scanner in1 = new Scanner(clientSocket.getInputStream());
-				
+				System.out.println("new scanner");
 				String mes; 
 
-				while(in1.hasNext()){
 
+				int innerCount = 0;
+				while(in1.hasNext()){
+					System.out.println("INNERCOUNT :" + innerCount++);
+					System.out.println("_________________");
+					System.out.println("enter while");
 					mes=in1.nextLine();
+					System.out.println("get msg");
 					String data[]=mes.split(",");
 					System.out.println("Client message :"+mes);
-					
+
+					System.out.println("before if");
 					if (data[0].equals("1"))//&& data.length==2)
 					{        							
+						System.out.println("inside if");
 						keybordEvents.keyPress(Integer.parseInt(data[1]));
 					};
-					/*if (mes.contentEquals("v")){
-            MyServer.direction(KeyEvent.VK_DOWN);
-        }
-        else if (mes.contentEquals("^")){
-            MyServer.direction(KeyEvent.VK_UP);
-        }
-        else if (mes.contentEquals("<")){
-            MyServer.direction(KeyEvent.VK_LEFT);
-        }
-        else if (mes.contentEquals(">")){
-            MyServer.direction(KeyEvent.VK_RIGHT);
-        }*/
+					System.out.println("outside if");
+
 
 				}
 				in1.close();
 			}
 		}catch(Exception e){} //read & display the message		
-	}
+	}*/
 
-}
+

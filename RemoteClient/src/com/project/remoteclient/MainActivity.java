@@ -19,13 +19,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-	private Socket client;
-	private PrintWriter printwriter;
 	
-	private TextView lblinf;
-	private EditText ip,message;
-	private Button previous,next,home,end;
-	private String sendMessage;
+	private Socket socket;
+	private	PrintWriter out ;	
+	
+	private EditText ip;
+	private Button previous,next,home,end,connect,disconnect;
 	private int sendPort=8081;
 	
 
@@ -43,10 +42,15 @@ public class MainActivity extends Activity {
 		next= (Button) findViewById(R.id.btnNext);
 		home= (Button) findViewById(R.id.btnHome);
 		end= (Button) findViewById(R.id.btnEnd);
+		connect= (Button) findViewById(R.id.btnConnect);
+		disconnect=(Button) findViewById(R.id.btnDisconnect);
+		
 		previous.setOnClickListener(oclBtns);
 		next.setOnClickListener(oclBtns);
 		end.setOnClickListener(oclBtns);
 		home.setOnClickListener(oclBtns);
+		connect.setOnClickListener(oclBtns);
+		disconnect.setOnClickListener(oclBtns);
 	}
 
 	@Override
@@ -69,48 +73,78 @@ public class MainActivity extends Activity {
 	}
 	
 	
-	///////////////////////////////
+	//function to send data to the server
 	public void send( final String a){
 		new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
 				try{
-					client=new Socket(ip.getText().toString(),sendPort);
-					printwriter=new PrintWriter(client.getOutputStream());
-					printwriter.write(a);
-					printwriter.flush();
-					printwriter.close();
-					client.close();
-					
-				}
-				
-				catch (IOException e){
-					
+					out.println(a);
+					out.flush();
+				} catch (Exception e){					
 					e.printStackTrace();
 				}
-				
 			}
 		}).start();
 	}
 	
 	
+	//function to connect to the server 
+	public void connect(){
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try{
+					socket=new Socket(ip.getText().toString(),sendPort);
+					out = new PrintWriter(socket.getOutputStream(), true);					
+				} catch (Exception e){					
+					e.printStackTrace();
+				}
+			}
+		}).start();
+	}
+	
+	//function to disconnect to the server 
+	public void disconnect(){
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try{
+					out.close();
+					socket.close();
+				} catch (Exception e){					
+					e.printStackTrace();
+				}
+			}
+		}).start();
+	}
+
+	
 	
 	 OnClickListener oclBtns = new OnClickListener() {
 	       @Override
-	       public void onClick(View v) {
-	         // TODO Auto-generated method stub
+	       public void onClick(View v) {	         
 	    	   switch( v.getId())
 	   		{
 	   		case R.id.btnEnd:
 	   			send(Events.PowerPoint +","+Buttons.KEY_END);
-	   		case R.id.btnHome:
+	   			break;
+	   		case R.id.btnHome:	   			
 	   			send(Events.PowerPoint +","+Buttons.KEY_HOME);
-	   		case R.id.btnPrevious:
+	   			break;
+	   		case R.id.btnPrevious:	   			
 	   			send(Events.PowerPoint +","+Buttons.KEY_PREVIOUS);
+	   			break;
 	   		case R.id.btnNext:
 	   			send(Events.PowerPoint +","+Buttons.KEY_NEXT);
-	   		
+	   			break;
+	   		case R.id.btnConnect:
+	   			connect();
+	   			break;
+	   		case R.id.btnDisconnect:
+	   			disconnect();
+	   			break;
 	   		}
 	       }
 	     };
