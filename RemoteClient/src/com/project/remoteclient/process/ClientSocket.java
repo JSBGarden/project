@@ -1,14 +1,19 @@
-package com.project.remoteprotocol.client;
+package com.project.remoteclient.process;
 
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ClientSockets {
-	private static Socket socket;
-	private static	 PrintWriter out ;	
+public class ClientSocket {
+	private  Socket socket;
+	private PrintWriter out ;	
+
+	/*public ClientSocket() {
+	
+	}*/
+	
 	
 	//function to send data to the server
-		public static void send(  final String data){
+		public void send(  final String data){
 			new Thread(new Runnable() {
 				
 				@Override
@@ -25,7 +30,7 @@ public class ClientSockets {
 		
 		
 		//function to connect to the server 
-		public static void connect(final String ip,final int port){
+		public void connect(final String ip,final int port){
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
@@ -40,7 +45,7 @@ public class ClientSockets {
 		}
 		
 		//function to disconnect to the server 
-		public static void disconnect(){
+		public void disconnect(){
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
