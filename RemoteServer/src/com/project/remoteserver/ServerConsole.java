@@ -18,12 +18,12 @@ import com.project.remoteprotocol.global.Events;
 public class ServerConsole    {
 
 	static Robot robot=null;
-	static KeybordEvents keybordEvents=null;
+	static InputEvents inpuItEvents=null;
 	public static void main(String[] args) throws IOException {
 		    
 		try{
 			robot= new Robot();
-			keybordEvents=new KeybordEvents(robot);
+			inpuItEvents=new InputEvents(robot);
 
 
 		ServerSocket listener= new ServerSocket(8081);
@@ -65,10 +65,25 @@ public class ServerConsole    {
 						break;
 					}
 					String data[]=input.split(",");
-					if (data[0].equals(Events.POWER_POINT+""))//&& data.length==2)
-					{      							
-						keybordEvents.keyPress(Integer.parseInt(data[1]));
-					};				
+					switch (Integer.parseInt(data[0]))
+					{
+					case Events.POWER_POINT:					
+						inpuItEvents.keyPress(Integer.parseInt(data[1]));
+						break;
+					case Events.MOUSE_MOVE:
+						try {
+						int mouse_x = Integer.parseInt(data[1]);
+						int mouse_y = Integer.parseInt(data[2]);
+						System.out.println(mouse_x+" |||" +mouse_y);
+						System.out.println();
+							inpuItEvents.mouseMove(mouse_x,mouse_y);
+						}catch(Exception e){
+							e.printStackTrace();
+						}
+						break;
+						
+					};
+							
 					
 					
 
@@ -102,7 +117,7 @@ public class ServerConsole    {
 		int count =0 ;
 		try{
 			robot= new Robot();
-			keybordEvents=new KeybordEvents(robot);
+			inpuItEvents=new inpuItEvents(robot);
 
 			serverSocket = new ServerSocket(8081);
 		      serverSocket.setSoTimeout(10000);
@@ -134,7 +149,7 @@ public class ServerConsole    {
 					if (data[0].equals("1"))//&& data.length==2)
 					{        							
 						System.out.println("inside if");
-						keybordEvents.keyPress(Integer.parseInt(data[1]));
+						inpuItEvents.keyPress(Integer.parseInt(data[1]));
 					};
 					System.out.println("outside if");
 
