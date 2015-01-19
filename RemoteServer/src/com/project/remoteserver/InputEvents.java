@@ -39,7 +39,6 @@ public class InputEvents {
 		catch (AWTException e) {
 			e.printStackTrace();
 		}
-
 	}
 	public void mouseMove(int x, int y)	  {
 		PointerInfo mousePointInfo = MouseInfo.getPointerInfo();
@@ -47,6 +46,11 @@ public class InputEvents {
 		int x_old = (int) mousePosition.getX();
 		int y_old = (int) mousePosition.getY();
 		robot.mouseMove(x+x_old, y+y_old); 	
+	}
+	
+	public void mouseClick(int mouse_button)	  {
+		robot.mousePress(mouse_button);
+		robot.mouseRelease(mouse_button);		
 	}
 
 }

@@ -4,8 +4,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class ClientSocket {
-	private  Socket socket;
-	private PrintWriter out ;	
+	private static Socket socket;
+	private static PrintWriter out ;	
 
 	/*public ClientSocket() {
 	

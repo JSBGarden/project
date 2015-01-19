@@ -3,7 +3,7 @@ package com.project.remoteprotocol.client;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ClientSockets {
+public class testClientSockets {
 	private static Socket socket;
 	private static	 PrintWriter out ;	
 	
