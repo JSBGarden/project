@@ -5,6 +5,9 @@ public class Events {
 	public static final int MOUSE_MOVE=2;
 	public static final int KEYBORD_KEY_DOWN=3;
 	public static final int MOUSE_CLICK=4;
+	public static final int BUTTON_PRESS=5;
+	public static final int BUTTON_RELEASE=6;
+	
 	
 	
 }

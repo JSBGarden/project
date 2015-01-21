@@ -10,7 +10,10 @@ import com.project.remoteclient.process.MouseClientProcess;
 
 
 
+
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +22,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -29,7 +33,7 @@ public class MouseActivity extends Activity {
 	ClientSocket client;
 	MouseClientProcess mouseClientProcess;
 	Button btnLeftClick,btnRightClick;
-	ImageButton btnMousepad;
+	ImageButton btnMousepad,btnToggleKeyboard;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +43,21 @@ public class MouseActivity extends Activity {
 		client=new ClientSocket();
 		mouseClientProcess= new MouseClientProcess();
 		btnMousepad=(ImageButton) findViewById(R.id.btnmouse);		
+		btnToggleKeyboard=(ImageButton) findViewById(R.id.btnKeyBoard);
 		btnLeftClick=(Button) findViewById(R.id.btnLeftClick);
 		btnRightClick=(Button) findViewById(R.id.btnRightClick);
 		btnLeftClick.setOnClickListener(oclBtns);
 		btnRightClick.setOnClickListener(oclBtns);
 		
+		btnToggleKeyboard.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.toggleSoftInput(0, 0);
+				
+			}
+		});
 		btnMousepad.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent motionEvent) {

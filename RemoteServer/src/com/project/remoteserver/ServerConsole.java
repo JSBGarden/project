@@ -65,22 +65,28 @@ public class ServerConsole    {
 						break;
 					}
 					String data[]=input.split(",");
+					int key1=Integer.parseInt(data[1]);
 					switch (Integer.parseInt(data[0]))
 					{
+					
 					case Events.POWER_POINT:					
-						inpuItEvents.keyPress(Integer.parseInt(data[1]));
+						inpuItEvents.keyClick(key1);
 						break;
 					case Events.MOUSE_MOVE:						
-						int mouse_x = Integer.parseInt(data[1]);
+						int mouse_x = key1;
 						int mouse_y = Integer.parseInt(data[2]);												
 							inpuItEvents.mouseMove(mouse_x,mouse_y);						
 						break;
 					case Events.MOUSE_CLICK:
-						try{
-						int mouse_button=Integer.parseInt(data[1]);
-						inpuItEvents.mouseClick(mouse_button);
-						}
-						catch (Exception e){e.printStackTrace();}
+						
+						inpuItEvents.mouseClick(key1);
+						break;
+					case Events.BUTTON_PRESS:
+						inpuItEvents.keyPress(key1);
+						break;
+					case Events.BUTTON_RELEASE:
+						inpuItEvents.keyRelease(key1);
+						break;
 					};
 							
 					

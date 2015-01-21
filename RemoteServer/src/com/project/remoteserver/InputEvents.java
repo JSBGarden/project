@@ -15,8 +15,27 @@ public class InputEvents {
 	}
 
 
-	//if single key is pressed
 	public void keyPress(int key1){
+		try {     
+			Robot robot = new Robot();
+			robot.keyPress(key1);			
+		}
+		catch (AWTException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void keyRelease(int key1){
+		try {     
+			Robot robot = new Robot();
+			robot.keyRelease(key1);			
+		}
+		catch (AWTException e) {
+			e.printStackTrace();
+		}
+	}
+	//if single key is clicked
+	public void keyClick(int key1){
 		try {     
 			Robot robot = new Robot();
 			robot.keyPress(key1);
@@ -27,8 +46,8 @@ public class InputEvents {
 		}
 	}
 
-	// if two key are pressed as once
-	public void keyPress(int key1,int key2){
+	// if two key are to be clicked as once
+	public void keyClick(int key1,int key2){
 		try {
 			Robot robot = new Robot();
 			robot.keyPress(key1);

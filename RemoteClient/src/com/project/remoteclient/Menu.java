@@ -9,12 +9,12 @@ import android.widget.ListView;
 
 public class Menu extends ListActivity{
 	
-	String list[]={"MouseActivity","PowerPointRemoteActivity","Test"};
+	String list[][]={{"MouseActivity","PowerPointRemoteActivity","Test"},{"Mouse and Keyboard","Power-Point Remote","vlc Remote"}};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setListAdapter(new ArrayAdapter<String>(Menu.this, android.R.layout.simple_list_item_1 ,list));
+		setListAdapter(new ArrayAdapter<String>(Menu.this, android.R.layout.simple_list_item_1 ,list[1]));
 	}
 	
 
@@ -22,7 +22,7 @@ public class Menu extends ListActivity{
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
-		String loadlist=list[position];
+		String loadlist=list[0][position];
 		try{	
 		Class myclass=Class.forName("com.project.remoteclient."+loadlist);
 		Intent myIntent=new Intent(Menu.this,myclass);

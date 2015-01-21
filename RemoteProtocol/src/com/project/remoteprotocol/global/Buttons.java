@@ -17,5 +17,8 @@ public class Buttons {
 	public static final int MOUSE_BUTTON_LEFT = InputEvent.BUTTON1_DOWN_MASK;
 	public static final int MOUSE_BUTTON_RIGHT = InputEvent.BUTTON3_DOWN_MASK;
 	
+	public static final int KEY_LEFT = KeyEvent.VK_LEFT;
+	public static final int KEY_UP =  KeyEvent.VK_UP;
+	
 	
 }
