@@ -15,12 +15,9 @@ import android.widget.ImageButton;
 public class PowerPointRemoteActivity extends Activity{
 	
 	
-	ClientSocket client ;
-	public final int port=8081;
-
-	Button connect;
+	ClientSocket clientSocket;
 	ImageButton previous, next, home,exit,fullScreen,toggleBlackScreen,ok;
-	EditText Ipaddress;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -28,7 +25,7 @@ public class PowerPointRemoteActivity extends Activity{
 		setContentView(R.layout.power_point_remote);
 		
 		
-		client=new ClientSocket();
+		clientSocket=new ClientSocket();
 		
 		previous=(ImageButton) findViewById(R.id.ibtnPrevious);
 		next=(ImageButton) findViewById(R.id.ibtnNext);
@@ -37,15 +34,7 @@ public class PowerPointRemoteActivity extends Activity{
 		fullScreen=(ImageButton) findViewById(R.id.ibtnFullScreen);
 		toggleBlackScreen=(ImageButton) findViewById(R.id.ibtnToggleBlack);
 		ok=(ImageButton) findViewById(R.id.ibtnOk);
-		connect=(Button)findViewById(R.id.btnConnection);
-		Ipaddress=(EditText)findViewById(R.id.txtIp);
-		connect.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				client.connect(Ipaddress.getText().toString(), port);		
-			}
-		});
+		
 		previous.setOnClickListener(oclBtns);
 		next.setOnClickListener(oclBtns);
 		home.setOnClickListener(oclBtns);
@@ -65,22 +54,22 @@ public class PowerPointRemoteActivity extends Activity{
 	    	   switch( v.getId())
 	   		{
 	   		case R.id.ibtnExit:
-	   			client.send(Events.POWER_POINT +","+Buttons.KEY_END);
+	   			clientSocket.send(Events.POWER_POINT +","+Buttons.KEY_END);
 	   			break;
 	   		case R.id.ibtnHome:	   			
-	   			client.send(Events.POWER_POINT +","+Buttons.KEY_HOME);
+	   			clientSocket.send(Events.POWER_POINT +","+Buttons.KEY_HOME);
 	   			break;
 	   		case R.id.ibtnPrevious:	   			
-	   				client.send(Events.POWER_POINT +","+Buttons.KEY_PREVIOUS);
+	   				clientSocket.send(Events.POWER_POINT +","+Buttons.KEY_PREVIOUS);
 	   			break;
 	   		case R.id.ibtnNext:
-	   				client.send(Events.POWER_POINT +","+Buttons.KEY_NEXT);
+	   				clientSocket.send(Events.POWER_POINT +","+Buttons.KEY_NEXT);
 	   			break;
 	   		case R.id.ibtnFullScreen:
-	   			client.send(Events.POWER_POINT +","+Buttons.KEY_FULL_SCREEN);
+	   			clientSocket.send(Events.POWER_POINT +","+Buttons.KEY_FULL_SCREEN);
 	   			break;
 	   		case R.id.ibtnToggleBlack:
-	   			client.send(Events.POWER_POINT +","+Buttons.KEY_TOGGLE_BLACK);
+	   			clientSocket.send(Events.POWER_POINT +","+Buttons.KEY_TOGGLE_BLACK);
 	   			break;
 	   		}
 	       }

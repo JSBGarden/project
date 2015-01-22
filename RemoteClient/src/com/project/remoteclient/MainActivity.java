@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import com.project.remoteclient.process.ClientSocket;
-import com.project.remoteprotocol.client.ClientSockets;
+
 import com.project.remoteprotocol.global.Buttons;
 import com.project.remoteprotocol.global.Events;
 

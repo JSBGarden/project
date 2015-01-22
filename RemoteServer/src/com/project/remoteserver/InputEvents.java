@@ -15,8 +15,27 @@ public class InputEvents {
 	}
 
 
-	//if single key is pressed
 	public void keyPress(int key1){
+		try {     
+			Robot robot = new Robot();
+			robot.keyPress(key1);			
+		}
+		catch (AWTException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void keyRelease(int key1){
+		try {     
+			Robot robot = new Robot();
+			robot.keyRelease(key1);			
+		}
+		catch (AWTException e) {
+			e.printStackTrace();
+		}
+	}
+	//if single key is clicked
+	public void keyClick(int key1){
 		try {     
 			Robot robot = new Robot();
 			robot.keyPress(key1);
@@ -27,8 +46,8 @@ public class InputEvents {
 		}
 	}
 
-	// if two key are pressed as once
-	public void keyPress(int key1,int key2){
+	// if two key are to be clicked as once
+	public void keyClick(int key1,int key2){
 		try {
 			Robot robot = new Robot();
 			robot.keyPress(key1);
@@ -39,7 +58,6 @@ public class InputEvents {
 		catch (AWTException e) {
 			e.printStackTrace();
 		}
-
 	}
 	public void mouseMove(int x, int y)	  {
 		PointerInfo mousePointInfo = MouseInfo.getPointerInfo();
@@ -47,6 +65,11 @@ public class InputEvents {
 		int x_old = (int) mousePosition.getX();
 		int y_old = (int) mousePosition.getY();
 		robot.mouseMove(x+x_old, y+y_old); 	
+	}
+	
+	public void mouseClick(int mouse_button)	  {
+		robot.mousePress(mouse_button);
+		robot.mouseRelease(mouse_button);		
 	}
 
 }
