@@ -6,41 +6,45 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:gravity="center"
+        android:orientation="vertical"
         android:weightSum="100" >
 
-        <Button
-            android:id="@+id/btnVlcPlay"
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:gravity="center"
+               android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/ibtnVLCPrevious"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_weight="25"
-            android:text=" " />
+            android:src="@drawable/btnvlcprevious" />
 
-        <Button
-            android:id="@+id/btnVlcPrevious"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text=" " 
-            android:layout_weight="25"/>
+            <ImageButton
+                android:id="@+id/ibtnVLCPlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="25"
+                android:src="@drawable/btnvlcplay" />
 
-        <Button
-            android:id="@+id/btnVlcStop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text=" " 
-            android:layout_weight="25"/>
+    <ImageButton
+        android:id="@+id/ibtnVLC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="25"
+        android:src="@drawable/btnvlcnext" />
 
-        <Button
-            android:id="@+id/btnVlcNext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text=" " 
-            android:layout_weight="25"/>
+    <ImageButton
+        android:id="@+id/ibtnVLCStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="25"
+        android:src="@drawable/btnvlcstop" />
 
-    </LinearLayout>
+            </LinearLayout>
+            </LinearLayout>
 
 </FrameLayout>

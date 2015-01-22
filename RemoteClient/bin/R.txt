@@ -294,10 +294,6 @@ int id btnLeftClick 0x7f050048
 int id btnNext 0x7f050040
 int id btnPrevious 0x7f05003f
 int id btnRightClick 0x7f050049
-int id btnVlcNext 0x7f05004e
-int id btnVlcPlay 0x7f05004b
-int id btnVlcPrevious 0x7f05004c
-int id btnVlcStop 0x7f05004d
 int id btnmouse 0x7f050047
 int id checkbox 0x7f05002d
 int id collapseActionView 0x7f05000d
@@ -318,6 +314,10 @@ int id ibtnNext 0x7f050050
 int id ibtnOk 0x7f050051
 int id ibtnPrevious 0x7f05004f
 int id ibtnToggleBlack 0x7f050054
+int id ibtnVLC 0x7f05004d
+int id ibtnVLCPlay 0x7f05004c
+int id ibtnVLCPrevious 0x7f05004b
+int id ibtnVLCStop 0x7f05004e
 int id icon 0x7f05002a
 int id ifRoom 0x7f05000a
 int id image 0x7f050027
