@@ -12,10 +12,13 @@ import com.project.remoteclient.process.MouseClientProcess;
 
 
 
+
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -83,13 +86,13 @@ public class MouseActivity extends Activity {
 		});
 		
 	}
-
-	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+
+	
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -121,5 +124,14 @@ public class MouseActivity extends Activity {
 			
 		}
 	};
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		//btnLeftClick.setText(""+keyCode);		
+		client.send(Events.SINGLE_BUTTON_PRESS+","+keyCode);
+		return true;
+	}
+	
 
 }

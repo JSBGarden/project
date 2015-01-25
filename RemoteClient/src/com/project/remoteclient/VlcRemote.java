@@ -45,28 +45,28 @@ public class VlcRemote extends Activity {
 	    	   switch( v.getId())
 	   		{
 	   		case R.id.ibtnVLCPlay:
-	   			clientSocket.send(Events.VLC_REMOTE +","+Buttons.KEY_VLC_PLAY);
+	   			clientSocket.send(Events.SINGLE_BUTTON_PRESS +","+Buttons.KEY_VLC_PLAY);
 	   			break;
 	   		case R.id.ibtnVLCPrevious:
-	   			clientSocket.send(Events.VLC_REMOTE +","+Buttons.KEY_VLC_PREVIOUS);
+	   			clientSocket.send(Events.SINGLE_BUTTON_PRESS +","+Buttons.KEY_VLC_PREVIOUS);
 	   			break;
 	   		case R.id.ibtnVLCNext:
-	   			clientSocket.send(Events.VLC_REMOTE +","+Buttons.KEY_VLC_NEXT);
+	   			clientSocket.send(Events.SINGLE_BUTTON_PRESS +","+Buttons.KEY_VLC_NEXT);
 	   			break;
 	   		case R.id.ibtnVLCStop:
-	   			clientSocket.send(Events.VLC_REMOTE +","+Buttons.KEY_VLC_STOP);
+	   			clientSocket.send(Events.SINGLE_BUTTON_PRESS +","+Buttons.KEY_VLC_STOP);
 	   			break;
 	   		case R.id.ibtnVLCVolup:
-	   			clientSocket.send(Events.VLC_REMOTE +","+Buttons.KEY_VLC_CONTROL+","+Buttons.KEY_VLC_VOLUP);
+	   			clientSocket.send(Events.COMBINATION_BUTTON_PRESS +","+Buttons.KEY_VLC_CONTROL+","+Buttons.KEY_VLC_VOLUP);
 	   			break;
 	   		case R.id.ibtnVLCVoldown:
-	   			clientSocket.send(Events.VLC_REMOTE +","+Buttons.KEY_VLC_CONTROL+","+Buttons.KEY_VLC_VOLDOWN);
+	   			clientSocket.send(Events.COMBINATION_BUTTON_PRESS +","+Buttons.KEY_VLC_CONTROL+","+Buttons.KEY_VLC_VOLDOWN);
 	   			break;
 	   		case R.id.ibtnVLCmute:
-	   			clientSocket.send(Events.VLC_REMOTE +","+Buttons.KEY_VLC_MUTE);
+	   			clientSocket.send(Events.SINGLE_BUTTON_PRESS +","+Buttons.KEY_VLC_MUTE);
 	   			break;
 	   		case R.id.ibtnVLCFullscreen:
-	   			clientSocket.send(Events.VLC_REMOTE +","+Buttons.KEY_VLC_FULLSCREEN);
+	   			clientSocket.send(Events.SINGLE_BUTTON_PRESS +","+Buttons.KEY_VLC_FULLSCREEN);
 	   			break;
 	   		}
 	       }

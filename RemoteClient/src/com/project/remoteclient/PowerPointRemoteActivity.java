@@ -54,22 +54,22 @@ public class PowerPointRemoteActivity extends Activity{
 	    	   switch( v.getId())
 	   		{
 	   		case R.id.ibtnExit:
-	   			clientSocket.send(Events.POWER_POINT +","+Buttons.KEY_END);
+	   			clientSocket.send(Events.SINGLE_BUTTON_PRESS +","+Buttons.KEY_END);
 	   			break;
 	   		case R.id.ibtnHome:	   			
-	   			clientSocket.send(Events.POWER_POINT +","+Buttons.KEY_HOME);
+	   			clientSocket.send(Events.SINGLE_BUTTON_PRESS +","+Buttons.KEY_HOME);
 	   			break;
 	   		case R.id.ibtnPrevious:	   			
-	   				clientSocket.send(Events.POWER_POINT +","+Buttons.KEY_PREVIOUS);
+	   				clientSocket.send(Events.SINGLE_BUTTON_PRESS +","+Buttons.KEY_PREVIOUS);
 	   			break;
 	   		case R.id.ibtnNext:
-	   				clientSocket.send(Events.POWER_POINT +","+Buttons.KEY_NEXT);
+	   				clientSocket.send(Events.SINGLE_BUTTON_PRESS +","+Buttons.KEY_NEXT);
 	   			break;
 	   		case R.id.ibtnFullScreen:
-	   			clientSocket.send(Events.POWER_POINT +","+Buttons.KEY_FULL_SCREEN);
+	   			clientSocket.send(Events.SINGLE_BUTTON_PRESS +","+Buttons.KEY_FULL_SCREEN);
 	   			break;
 	   		case R.id.ibtnToggleBlack:
-	   			clientSocket.send(Events.POWER_POINT +","+Buttons.KEY_TOGGLE_BLACK);
+	   			clientSocket.send(Events.SINGLE_BUTTON_PRESS +","+Buttons.KEY_TOGGLE_BLACK);
 	   			break;
 	   		}
 	       }
