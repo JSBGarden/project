@@ -49,8 +49,8 @@ public class MouseActivity extends Activity {
 		btnToggleKeyboard=(ImageButton) findViewById(R.id.btnKeyBoard);
 		btnLeftClick=(Button) findViewById(R.id.btnLeftClick);
 		btnRightClick=(Button) findViewById(R.id.btnRightClick);
-		//btnLeftClick.setOnClickListener(oclBtns);
-		btnRightClick.setOnClickListener(oclBtns);
+	
+	
 		btnLeftClick.setOnTouchListener(new OnTouchListener() {
 			
 			@Override
@@ -141,24 +141,7 @@ public class MouseActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	OnClickListener oclBtns = new OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			int mouse_button = 0;
-			switch (v.getId())
-			{
-			//case R.id.btnLeftClick:
-				//mouse_button=Buttons.MOUSE_BUTTON_LEFT;
-				//break;
-			case R.id.btnRightClick:
-				mouse_button=Buttons.MOUSE_BUTTON_RIGHT;
-				break;
-			}
-	    	 client.send(Events.MOUSE_CLICK +","+mouse_button);
-			
-		}
-	};
+	
 	
 
 	
