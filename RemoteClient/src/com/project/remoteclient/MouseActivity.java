@@ -49,9 +49,44 @@ public class MouseActivity extends Activity {
 		btnToggleKeyboard=(ImageButton) findViewById(R.id.btnKeyBoard);
 		btnLeftClick=(Button) findViewById(R.id.btnLeftClick);
 		btnRightClick=(Button) findViewById(R.id.btnRightClick);
-		btnLeftClick.setOnClickListener(oclBtns);
+		//btnLeftClick.setOnClickListener(oclBtns);
 		btnRightClick.setOnClickListener(oclBtns);
-		
+		btnLeftClick.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				int action = (event.getAction() & MotionEvent.ACTION_MASK);
+				switch(action)
+				{
+				case MotionEvent.ACTION_UP:
+					 client.send(Events.MOUSE_BUTTON_UP +","+Buttons.MOUSE_BUTTON_LEFT);
+					break;
+				case MotionEvent.ACTION_DOWN:
+					client.send(Events.MOUSE_BUTTON_DOWN +","+Buttons.MOUSE_BUTTON_LEFT);
+					break;
+					
+				}
+				return false;
+			}
+		});
+		btnRightClick.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				int action = (event.getAction() & MotionEvent.ACTION_MASK);
+				switch(action)
+				{
+				case MotionEvent.ACTION_UP:
+					 client.send(Events.MOUSE_BUTTON_UP +","+Buttons.MOUSE_BUTTON_RIGHT);
+					break;
+				case MotionEvent.ACTION_DOWN:
+					client.send(Events.MOUSE_BUTTON_DOWN +","+Buttons.MOUSE_BUTTON_RIGHT);
+					break;
+					
+				}
+				return false;
+			}
+		});
 		btnToggleKeyboard.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -113,9 +148,9 @@ public class MouseActivity extends Activity {
 			int mouse_button = 0;
 			switch (v.getId())
 			{
-			case R.id.btnLeftClick:
-				mouse_button=Buttons.MOUSE_BUTTON_LEFT;
-				break;
+			//case R.id.btnLeftClick:
+				//mouse_button=Buttons.MOUSE_BUTTON_LEFT;
+				//break;
 			case R.id.btnRightClick:
 				mouse_button=Buttons.MOUSE_BUTTON_RIGHT;
 				break;
@@ -124,7 +159,9 @@ public class MouseActivity extends Activity {
 			
 		}
 	};
+	
 
+	
 	/*@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// TODO Auto-generated method stub
