@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 public class Menu extends ListActivity{
 	
-	String list[][]={{"MouseActivity","PowerPointRemoteActivity","VlcRemote"},{"Mouse and Keyboard","Power-Point Remote","vlc Remote"}};
+	String list[][]={{"MouseActivity","PowerPointRemoteActivity","VlcRemote","Test"},{"Mouse and Keyboard","Power-Point Remote","vlc Remote","Test"}};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub

@@ -20,18 +20,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Test extends Activity{
-	ImageView img1,img2;
-	ClientSocket clientSocket;
+	ImageView imgUP,imgDown,imgLeft,imgRight,imgA,imgB,imgC,imgD;
+	ClientSocket client;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.test);
-		clientSocket= new ClientSocket ();
-		img1= (ImageView) findViewById(R.id.imageView1);
-		img2= (ImageView) findViewById(R.id.imageView2);
-		img1.setOnTouchListener(otl );
-		img2.setOnTouchListener(otl );
+		client= new ClientSocket ();
+		imgA= (ImageView) findViewById(R.id.cbtnA);
+		imgB= (ImageView) findViewById(R.id.cbtnB);
+		imgC= (ImageView) findViewById(R.id.cbtnC);
+		imgD= (ImageView) findViewById(R.id.cbtnD);
+		imgUP= (ImageView) findViewById(R.id.cbtnUP);
+		imgDown= (ImageView) findViewById(R.id.cbtnDown);
+		imgLeft= (ImageView) findViewById(R.id.cbtnLeft);
+		imgRight= (ImageView) findViewById(R.id.cbtnRight);
+		
+		imgA.setOnTouchListener(otl);
+		imgB.setOnTouchListener(otl);
+		imgC.setOnTouchListener(otl);
+		imgD.setOnTouchListener(otl);
+		imgUP.setOnTouchListener(otl);
+		imgDown.setOnTouchListener(otl);
+		imgLeft.setOnTouchListener(otl);
+		imgRight.setOnTouchListener(otl);
+		
 			
 		
 	}
@@ -39,26 +53,51 @@ public class Test extends Activity{
 		
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
-			int action = (event.getAction() );
-			int a;
+			int action = (event.getAction() & MotionEvent.ACTION_MASK);
 			
-			if (v.getId()==R.id.imageView1)
-			{a=Buttons.KEY_LEFT;}
-			else
-			{a=Buttons.KEY_UP;}
-				switch (action) {
-			/*	case MotionEvent.ACTION_DOWN:
-				//case MotionEvent.ACTION_POINTER_DOWN:
-					clientSocket.send(Events.BUTTON_PRESS+","+a);
-					break;*/
-				case MotionEvent.ACTION_UP:
-				case MotionEvent.ACTION_CANCEL:
-				//case MotionEvent.ACTION_POINTER_UP:
-					clientSocket.send("asdfadsf");//Events.BUTTON_RELEASE+","+a);
-					break;
-				}
+			int button=0;
+			switch(v.getId())
+			{
+			case R.id.cbtnA:
+				button=Buttons.KEY_UP;
+				break;
+			case R.id.cbtnB:
+				button=Buttons.KEY_B;
+				break;
+			case(R.id.cbtnC):
+				button=Buttons.KEY_C;
+				break;
+			case(R.id.cbtnD):
+				button=Buttons.KEY_A;
+				break;
+			case(R.id.cbtnUP):
+				button=Buttons.KEY_D;
+				break;
+			case(R.id.cbtnDown):
+				button=Buttons.KEY_DOWN;
+				break;
+			case(R.id.cbtnLeft):
+				button=Buttons.KEY_LEFT;
+				break;
+			case(R.id.cbtnRight):
+				button=Buttons.KEY_RIGHT;
+				break;
+			}
 			
 			
+			
+			switch(action)
+			{
+			
+			
+			case MotionEvent.ACTION_UP:
+				 client.send(Events.BUTTON_RELEASE+","+button);
+				break;
+			case MotionEvent.ACTION_DOWN:
+				client.send(Events.BUTTON_PRESS+","+button);
+				break;
+				
+			}
 			return false;
 		}
 	};

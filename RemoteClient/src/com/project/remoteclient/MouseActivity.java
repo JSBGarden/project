@@ -140,18 +140,4 @@ public class MouseActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	
-	
-
-	
-	/*@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
-		//btnLeftClick.setText(""+keyCode);		
-//		client.send(Events.SINGLE_BUTTON_PRESS+","+keyCode);
-		return true;
-	}*/
-	
-
 }
