@@ -8,7 +8,12 @@ import com.project.remoteprotocol.global.Events;
 
 import android.app.Activity;
 import android.app.Notification.Action;
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.view.MotionEvent;
@@ -19,9 +24,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Test extends Activity{
+public class Test extends Activity implements SensorEventListener{
+	
+	
 	ImageView imgUP,imgDown,imgLeft,imgRight,imgA,imgB,imgC,imgD;
 	ClientSocket client;
+	float x=1, sensorX=0,left_Press=0;
+	int right_Press=0;
+	SensorManager sm;
+	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		sm.unregisterListener(this);
+		super.onPause();
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -46,6 +64,9 @@ public class Test extends Activity{
 		imgLeft.setOnTouchListener(otl);
 		imgRight.setOnTouchListener(otl);
 		
+		 sm=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
+		Sensor s=sm.getSensorList(Sensor.TYPE_ACCELEROMETER).get(0);
+		sm.registerListener(this, s, SensorManager.SENSOR_DELAY_UI);
 			
 		
 	}
@@ -101,6 +122,39 @@ public class Test extends Activity{
 			return false;
 		}
 	};
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onSensorChanged(SensorEvent event) {
+		// TODO Auto-generated method stub
+		sensorX=event.values[1];
+		int a;
+		if (sensorX>-1.2 && left_Press==1){
+			left_Press=0;
+			client.send(Events.BUTTON_RELEASE+","+Buttons.KEY_LEFT);
+		}
+		if(sensorX<1.2 && right_Press==1){
+			right_Press=0;
+			client.send(Events.BUTTON_RELEASE+","+Buttons.KEY_RIGHT);
+		}
+				
+		
+		if (sensorX<-1.2 && left_Press==0)
+		{
+			client.send(Events.BUTTON_PRESS+","+Buttons.KEY_LEFT);
+			left_Press=1;
+		}
+		else if (sensorX>1.2 && right_Press==0)
+		{
+			client.send(Events.BUTTON_PRESS+","+Buttons.KEY_RIGHT);
+			right_Press=1;
+		}
+		
+		
+	}
 	
 	
 
