@@ -12,6 +12,7 @@ public class ClientSocket {
 	}*/
 	
 	
+	//string
 	//function to send data to the server
 		public void send(  final String data){
 			new Thread(new Runnable() {
@@ -27,6 +28,24 @@ public class ClientSocket {
 				}
 			}).start();
 		}
+		
+		
+		// bytestream
+		//function to send data to the server
+				public void send(  final int data){
+					new Thread(new Runnable() {
+						
+						@Override
+						public void run() {
+							try{
+								out.println(data);
+								out.flush();
+							} catch (Exception e){					
+								e.printStackTrace();
+							}
+						}
+					}).start();
+				}
 		
 		
 		//function to connect to the server 

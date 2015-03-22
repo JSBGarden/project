@@ -127,6 +127,13 @@ public class MouseActivity extends Activity {
 		return true;
 	}
 
+@Override
+public boolean onKeyDown(int keyCode, KeyEvent event) {
+	// TODO Auto-generated method stub
+	
+	 client.send(Events.KEYBORD_KEY_DOWN+","+keyCode);
+	return super.onKeyDown(keyCode, event);
+}
 	
 
 	@Override

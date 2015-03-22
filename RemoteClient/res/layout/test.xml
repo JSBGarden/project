@@ -20,8 +20,8 @@
 
 			    <ImageButton
 			        android:id="@+id/cbtnUP"
-			        android:layout_width="70dp"
-			        android:layout_height="70dp"
+			        android:layout_width="90dp"
+			        android:layout_height="90dp"
 			        android:layout_gravity="bottom|center"
 			        android:src="@drawable/abc_ab_bottom_solid_dark_holo" />
 
@@ -40,8 +40,8 @@
 
 		            <ImageButton
 		                android:id="@+id/cbtnLeft"
-		                android:layout_width="70dp"
-		                android:layout_height="70dp"
+		                android:layout_width="90dp"
+		                android:layout_height="90dp"
 		                android:layout_gravity="center"
 		                android:src="@drawable/abc_ab_bottom_solid_dark_holo" />
 		        </FrameLayout>
@@ -53,8 +53,8 @@
 
 		            <ImageButton
 		                android:id="@+id/cbtnRight"
-		                android:layout_width="70dp"
-		                android:layout_height="70dp"
+		                android:layout_width="90dp"
+		                android:layout_height="90dp"
 		                android:layout_gravity="center"
 		                android:src="@drawable/abc_ab_bottom_solid_dark_holo" />
 		        </FrameLayout>
@@ -68,8 +68,8 @@
 
 		        <ImageButton
 		            android:id="@+id/cbtnDown"
-		            android:layout_width="70dp"
-		            android:layout_height="70dp"
+		            android:layout_width="90dp"
+		            android:layout_height="90dp"
 		            android:layout_gravity="center|top"
 		            android:src="@drawable/abc_ab_bottom_solid_dark_holo" />
 
@@ -99,8 +99,8 @@
 
 		            <ImageButton
 		                android:id="@+id/cbtnC"
-		                android:layout_width="70dp"
-		                android:layout_height="70dp"
+		                android:layout_width="100dp"
+		                android:layout_height="100dp"
 		                android:layout_gravity="bottom"
 		                android:src="@drawable/abc_ab_bottom_solid_dark_holo" />
 
@@ -112,8 +112,8 @@
 
 		            <ImageButton
 		                android:id="@+id/cbtnD"
-		                android:layout_width="70dp"
-		                android:layout_height="70dp"
+		                android:layout_width="100dp"
+		                android:layout_height="100dp"
 		                android:layout_gravity="bottom"
 		                android:src="@drawable/abc_ab_bottom_solid_dark_holo" />
 
@@ -135,8 +135,8 @@
 
 		            <ImageButton
 		                android:id="@+id/cbtnA"
-		                android:layout_width="70dp"
-		                android:layout_height="70dp"
+		                android:layout_width="100dp"
+		                android:layout_height="100dp"
 		                android:src="@drawable/abc_ab_bottom_solid_dark_holo" />
 		        </FrameLayout>
 
@@ -146,8 +146,8 @@
 
 		            <ImageButton
 		                android:id="@+id/cbtnB"
-		                android:layout_width="70dp"
-		                android:layout_height="70dp"
+		                android:layout_width="100dp"
+		                android:layout_height="100dp"
 		                android:src="@drawable/abc_ab_bottom_solid_dark_holo" />
 		        </FrameLayout>
 		    </LinearLayout>
